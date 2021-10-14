@@ -4,6 +4,7 @@ import Banner from '../components/Banner'
 import { Link } from 'react-router-dom'
 import { RoomContext } from '../context'
 import Minibanner from '../components/Minibanner'
+import StyledHero from '../components/StyledBanner'
 
 export default class SingleRoom extends Component {
 
@@ -23,6 +24,7 @@ export default class SingleRoom extends Component {
     render() {
         const {getRoom} = this.context
         const room = getRoom(this.state.slug)
+
         if(!room){
             return (
             <div className="error">
@@ -34,13 +36,34 @@ export default class SingleRoom extends Component {
             )
         }
 
-        const {name,description,capacity,size,price,extras,breakfast,pets,images} = room
+        const {name,description,capacity,size,price,extras,breakfast,pets,images} = room;
+        // array destructuring using rest operator
+        const [mainImg, ...defaultImg] = images;
         return (
-            <Banner className="roomsHero">
+            <>
+            <StyledHero  img={mainImg || defaultBcg }>
+            {/* <StyledHero  img={images[0] || defaultBcg }> */}
+                {/* <Banner className="roomsHero" > */}
                 <Minibanner title={`${name} room`}>
                     <Link to="/rooms" className="btn-primary">Back to Rooms</Link>
                 </Minibanner>
-            </Banner>
+            </StyledHero>
+            <section className="single-room">
+                <div className = "single-room-images">
+                    {defaultImg.map((item,index) =>{
+                    // {images.map((item,index) =>{
+                        return <img key={index} src={item} alt={name} />
+                    })}
+                </div>
+
+                <div className="single-room-info">
+                    <article className="desc">
+                        <h3>details</h3>
+                        <p>{description}</p>
+                    </article>
+                </div>
+            </section>
+            </>
         )
     }
 }
