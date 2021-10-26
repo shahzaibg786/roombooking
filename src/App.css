@@ -511,3 +511,42 @@ h6 {
   }
 }
 /* end of rooms fitler*/
+
+/* Start of pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+.paginationBttns {
+  width: 80%;
+  height: 40px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+.paginationBttns a {
+  padding: 10px;
+  margin: 8px;
+  border-radius: 5px;
+  /* border: 1px solid #222; */
+  border: 1px solid var(--primaryColor);
+  color: white;
+  transition: var(--mainTransition);
+  background: var(--primaryColor);
+  cursor: pointer;
+  
+}
+
+.paginationBttns a:hover {
+  /* color: white; */
+  /* background-color: #222;  */
+  background: transparent;
+  color: var(--primaryColor);
+}
+
+.paginationActive a {
+  background: transparent;
+  color: var(--primaryColor);
+}
+/* End of pagination */
